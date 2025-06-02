@@ -1,0 +1,22 @@
+pool: Default
+
+resources:
+  repositories:
+  - repository: Template1
+    type: git
+    name: Template1/Template1
+    ref: refs/heads/main
+    
+extends:
+  template: template1.yml@Template1
+  parameters:
+    stages:
+    - stage: stage_1
+      displayName: Stage 1
+      jobs:
+      - job: job_1
+        steps:
+        - task: CmdLine@2
+          displayName: 'Run a one-line script'
+          inputs:
+            script: echo Hello job_1
